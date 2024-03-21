@@ -1,3 +1,5 @@
+import Banner from "@/components/Banner";
+import Header from "@/components/Header";
 import Head from "next/head";
 
 export default function Home() {
@@ -11,7 +13,10 @@ export default function Home() {
         />
         {/* <link rel="stylesheet" href="" /> */}
       </Head>
-      <h1>Welcome to NicBnB</h1>
+      {/* Header */}
+      <Header />
+      {/* Banner */}
+      <Banner />
     </div>
   );
 }
