@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner";
 import Explore from "@/components/Explore";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LargeCard from "@/components/LargeCard";
 import LiveAnywhere from "@/components/LiveAnywhere";
@@ -32,6 +33,7 @@ export default function Home() {
           buttonText="Get Inspired"
         />
       </main>
+      <Footer />
     </div>
   );
 }
