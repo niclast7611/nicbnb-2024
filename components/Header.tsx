@@ -9,10 +9,15 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file for date picker
 import { DateRangePicker, RangeKeyDict } from "react-date-range";
 import { HiUsers } from "react-icons/hi";
+import { useRouter } from "next/router";
 
-type Props = {};
+type Props = {
+  placeholder?: string;
+};
 
-const Header = (props: Props) => {
+const Header = ({ placeholder }: Props) => {
+  const router = useRouter();
+
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -36,10 +41,24 @@ const Header = (props: Props) => {
     setEndDate(new Date());
   };
 
+  const handleSearch = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numberOfGuests: numberOfGuests,
+      },
+    });
+  };
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       {/* Left */}
-      <div className="relative flex items-center h-10 cursor-pointer my-auto">
+      <div
+        className="relative flex items-center h-10 cursor-pointer my-auto"
+        onClick={() => router.push("/")}
+      >
         {/* Need to come back and fill with new logo */}
         <Image
           src="https://miro.medium.com/v2/resize:fit:1358/0*NChTo-XqLOxLabIW"
@@ -57,7 +76,7 @@ const Header = (props: Props) => {
           value={searchInput}
           type="text"
           className="flex-grow pl-5 bg-transparent outline-none placeholder-gray-400"
-          placeholder="Start your search"
+          placeholder={placeholder || "Start your search"}
         />
         <FaSearch className="hidden md:inline-flex h-8 w-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
       </div>
@@ -97,7 +116,9 @@ const Header = (props: Props) => {
             <button className="flex-grow text-gray-500" onClick={resetInput}>
               Cancel
             </button>
-            <button className="flex-grow text-gray-400">Search</button>
+            <button className="flex-grow text-gray-400" onClick={handleSearch}>
+              Search
+            </button>
           </div>
         </div>
       )}
