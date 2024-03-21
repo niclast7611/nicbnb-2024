@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 type Props = {};
@@ -5,12 +6,19 @@ type Props = {};
 const Banner = (props: Props) => {
   return (
     <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]">
-      <video
+      {/* come back when i can get a good sized video */}
+      {/* <video
         src="/car-driving-flyover-banner.mp4"
         className="w-full h-full object-cover"
         loop={true}
         autoPlay={true}
         muted={true}
+      /> */}
+      <Image
+        src={"/forest-banner.jpg"}
+        alt="Nature Banner"
+        layout="fill"
+        objectFit="cover"
       />
       <div className="absolute top-1/2 w-full text-center">
         <p className="text-sm sm:text-lg">Not sure where to go? Perfect.</p>

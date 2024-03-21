@@ -4,9 +4,16 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LargeCard from "@/components/LargeCard";
 import LiveAnywhere from "@/components/LiveAnywhere";
+import { CategoryData, Listing } from "@/public/utils/ApiTypes";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 
-export default function Home() {
+type Props = {
+  exploreData: Listing[];
+  categoryData: CategoryData[];
+};
+
+export default function Home({ exploreData, categoryData }: Props) {
   return (
     <div>
       <Head>
@@ -22,9 +29,9 @@ export default function Home() {
       {/* Banner */}
       <Banner />
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
-        <Explore />
+        <Explore exploreData={exploreData} />
 
-        <LiveAnywhere />
+        <LiveAnywhere categoryData={categoryData} />
 
         <LargeCard
           image="https://miro.medium.com/v2/resize:fit:1358/0*NChTo-XqLOxLabIW"
@@ -37,3 +44,38 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const exploreResponse = await fetch(
+    "https://airbnb45.p.rapidapi.com/api/v1/searchPropertyByLocation?location=Southern%20California",
+    {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
+        "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
+      },
+    }
+  );
+  const dataExploreResponse = await exploreResponse.json();
+  const exploreData = dataExploreResponse?.data?.list || [];
+
+  const categoryResponse = await fetch(
+    "https://airbnb45.p.rapidapi.com/api/v1/getCategory",
+    {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
+        "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
+      },
+    }
+  );
+  const dataCategoryResponse = await categoryResponse.json();
+  const categoryData = dataCategoryResponse?.data || [];
+
+  return {
+    props: {
+      exploreData,
+      categoryData,
+    },
+  };
+};
