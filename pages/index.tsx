@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import Explore from "@/components/Explore";
 import Header from "@/components/Header";
 import Head from "next/head";
 
@@ -17,6 +18,9 @@ export default function Home() {
       <Header />
       {/* Banner */}
       <Banner />
+      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+        <Explore />
+      </main>
     </div>
   );
 }
