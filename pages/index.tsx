@@ -47,11 +47,11 @@ export default function Home({ exploreData, categoryData }: Props) {
 
 // export const getServerSideProps: GetServerSideProps = async () => {
 //   const exploreResponse = await fetch(
-//     "https://airbnb45.p.rapidapi.com/api/v1/searchPropertyByLocation?location=Southern%20California",
+//     `${process.env.NEXT_PUBLIC_RAPID_API_BASE_URL}v1/searchPropertyByLocation?location=Southern%20California`,
 //     {
 //       method: "GET",
 //       headers: {
-//         "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
+//         "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
 //         "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
 //       },
 //     }
@@ -60,11 +60,11 @@ export default function Home({ exploreData, categoryData }: Props) {
 //   const exploreData = dataExploreResponse?.data?.list || [];
 
 //   const categoryResponse = await fetch(
-//     "https://airbnb45.p.rapidapi.com/api/v1/getCategory",
+//     `${process.env.NEXT_PUBLIC_RAPID_API_BASE_URL}v1/getCategory`,
 //     {
 //       method: "GET",
 //       headers: {
-//         "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
+//         "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
 //         "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
 //       },
 //     }

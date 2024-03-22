@@ -6,7 +6,7 @@ export interface Listing {
     listingParamOverrides: ListingParamOverrides;
   }
   
-  interface ListingDetails {
+  export interface ListingDetails {
     id: string;
     title: string;
     titleLocale: string;
@@ -125,4 +125,9 @@ export interface Listing {
     key: string;
     title: string;
     image: string;
+  }
+
+  export interface Coordinates {
+    longitude: number;
+    latitude: number;
   }

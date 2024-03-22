@@ -5,6 +5,7 @@ import { Listing } from "@/public/utils/ApiTypes";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React from "react";
+import Map from "../components/Map";
 type Props = {
   exploreData: Listing[];
 };
@@ -69,7 +70,8 @@ const Search = ({ exploreData }: Props) => {
                 );
 
               const total = Math.round(
-                Number(discountedPrice || price) * numberOfDays
+                Number(discountedPrice || price) *
+                  (numberOfDays === 0 ? 1 : numberOfDays)
               );
               return (
                 <InfoCard
@@ -91,6 +93,10 @@ const Search = ({ exploreData }: Props) => {
             })}
           </div>
         </section>
+
+        <section className="hidden xl:flex-inline xl:min-w-[600px]">
+          <Map searchResults={exploreData} />
+        </section>
       </main>
 
       <Footer />
@@ -102,11 +108,11 @@ export default Search;
 
 // export async function getServerSideProps() {
 //   const exploreResponse = await fetch(
-//     "https://airbnb45.p.rapidapi.com/api/v1/searchPropertyByLocation?location=Southern%20California",
+//     `${process.env.NEXT_PUBLIC_RAPID_API_BASE_URL}v1/searchPropertyByLocation?location=Southern%20California`,
 //     {
 //       method: "GET",
 //       headers: {
-//         "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
+//         "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
 //         "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
 //       },
 //     }
