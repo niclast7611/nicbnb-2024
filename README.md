@@ -1,3 +1,5 @@
+##Currently Need to find better API. Or integrate Sanity.io Headless CMS platform so I can deploy this
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
