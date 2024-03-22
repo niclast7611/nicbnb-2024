@@ -90,7 +90,9 @@ export interface Listing {
     accessibilityLabel: string;
     displayComponentType: string;
     concatQualifierLeft: boolean;
-    price: string;
+    price?: string;
+    discountedPrice?: string;
+    originalPrice?: string;
     qualifier: string;
     trailingContent: null;
     shortQualifier: string;
