@@ -100,22 +100,22 @@ const Search = ({ exploreData }: Props) => {
 
 export default Search;
 
-export async function getServerSideProps() {
-  const exploreResponse = await fetch(
-    "https://airbnb45.p.rapidapi.com/api/v1/searchPropertyByLocation?location=Southern%20California",
-    {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
-        "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
-      },
-    }
-  );
-  const dataExploreResponse = await exploreResponse.json();
-  const exploreData = dataExploreResponse?.data?.list || [];
-  return {
-    props: {
-      exploreData,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const exploreResponse = await fetch(
+//     "https://airbnb45.p.rapidapi.com/api/v1/searchPropertyByLocation?location=Southern%20California",
+//     {
+//       method: "GET",
+//       headers: {
+//         "X-RapidAPI-Key": "b558de45f0msh704e36445cf0e19p10bbebjsn1eab9521af55",
+//         "X-RapidAPI-Host": "airbnb45.p.rapidapi.com",
+//       },
+//     }
+//   );
+//   const dataExploreResponse = await exploreResponse.json();
+//   const exploreData = dataExploreResponse?.data?.list || [];
+//   return {
+//     props: {
+//       exploreData,
+//     },
+//   };
+// }
