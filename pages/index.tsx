@@ -5,15 +5,18 @@ import Header from "@/components/Header";
 import LargeCard from "@/components/LargeCard";
 import LiveAnywhere from "@/components/LiveAnywhere";
 import { CategoryData, Listing } from "@/public/utils/ApiTypes";
+import { fakeCategoryData, fakeExploreData } from "@/public/utils/fakeApiData";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 
 type Props = {
-  exploreData: Listing[];
-  categoryData: CategoryData[];
+  // exploreData: Listing[];
+  // categoryData: CategoryData[];
 };
 
-export default function Home({ exploreData, categoryData }: Props) {
+export default function Home() {
+  const exploreData = fakeExploreData;
+  const categoryData = fakeCategoryData;
   return (
     <div>
       <Head>
@@ -22,16 +25,15 @@ export default function Home({ exploreData, categoryData }: Props) {
           name="description"
           content="An Airbnb clone built with Next.js and Tailwind CSS"
         />
-        {/* <link rel="stylesheet" href="" /> */}
       </Head>
       {/* Header */}
       <Header />
       {/* Banner */}
       <Banner />
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
-        {/* <Explore exploreData={exploreData} />
+        <Explore exploreData={exploreData} />
 
-        <LiveAnywhere categoryData={categoryData} /> */}
+        <LiveAnywhere categoryData={categoryData} />
 
         <LargeCard
           image="https://miro.medium.com/v2/resize:fit:1358/0*NChTo-XqLOxLabIW"

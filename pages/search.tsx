@@ -6,18 +6,19 @@ import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React from "react";
 import Map from "../components/Map";
+import { fakeExploreData } from "@/public/utils/fakeApiData";
 type Props = {
-  exploreData: Listing[];
+  // exploreData: Listing[];
 };
-const Search = ({ exploreData }: Props) => {
+const Search = () => {
+  const exploreData = fakeExploreData;
   const router = useRouter();
   const { location, startDate, endDate, numberOfGuests } = router.query;
 
-  const formattedStartDate = format(
-    new Date(startDate as string),
-    "dd MMMM yy"
-  );
-  const formattedEndDate = format(new Date(endDate as string), "dd MMMM yy");
+  const formattedStartDate =
+    startDate && format(new Date(startDate as string), "dd MMMM yy");
+  const formattedEndDate =
+    endDate && format(new Date(endDate as string), "dd MMMM yy");
 
   const dateRange = `${formattedStartDate} - ${formattedEndDate}`;
 
@@ -94,9 +95,9 @@ const Search = ({ exploreData }: Props) => {
           </div>
         </section>
 
-        <section className="hidden xl:flex-inline xl:min-w-[600px]">
+        {/* <section className="hidden xl:flex-inline xl:min-w-[600px]">
           <Map searchResults={exploreData} />
-        </section>
+        </section> */}
       </main>
 
       <Footer />
